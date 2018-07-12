@@ -8,18 +8,18 @@ option java_multiple_files = true;
 import "google/protobuf/field_mask.proto";
 
 message Detail {
-	int32 age = 1;
-	string dob = 2;
-	string address = 3;
-	string country = 4;
+    int32 age = 1;
+    string dob = 2;
+    string address = 3;
+    string country = 4;
 }
 
 message Entity {
-	string id = 1;
-	Detail detail = 2;
+    string id = 1;
+    Detail detail = 2;
 }
 
 message PatchRequest {
-	Entity entity = 1;
-	google.protobuf.FieldMask mask = 2;
+    Entity entity = 1;
+    google.protobuf.FieldMask mask = 2;
 }
