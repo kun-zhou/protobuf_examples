@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package oneof;
+option java_package = "me.kunzhou.protobuf_examples.oneof_messages";
+option java_multiple_files = true;
+
+import "google/protobuf/struct.proto";
+
+message NullableString {
+    oneof String {
+    	string stringValue = 1;
+    	google.protobuf.NullValue nullValue = 2;
+    }
+}

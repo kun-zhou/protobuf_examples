@@ -12,3 +12,4 @@ To compile, execute `gradle installDist` from project root.
 The following demos are available:
 
 - FieldMaskDemo: run `build/install/protobuf_examples/bin/fieldmask-demo` to execute
+- OneofDemo: run `build/install/protobuf_examples/bin/oneof-demo` to execute

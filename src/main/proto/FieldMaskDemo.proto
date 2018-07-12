@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package common;
-option java_package = "me.kunzhou.protobuf_examples";
-option java_outer_classname = "common";
+package field_mask;
+option java_package = "me.kunzhou.protobuf_examples.field_mask_messages";
 option java_multiple_files = true;
 
 import "google/protobuf/field_mask.proto";

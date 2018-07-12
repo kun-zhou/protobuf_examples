@@ -1,7 +1,10 @@
 package me.kunzhou.protobuf_examples;
+
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.util.FieldMaskUtil;
 import com.google.protobuf.FieldMask;
+
+import me.kunzhou.protobuf_examples.field_mask_messages.*;
 
 // protobuf objects namespaced in the same package
 // *.proto can be found in {project_root}/src/main/proto/
