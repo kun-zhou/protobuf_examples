@@ -49,7 +49,8 @@ public class App {
 
 		//*** 3. Merge the patch to the original entity ***//
 		System.out.println(">>> 3. Merge the patch");
-		// first, estabilish the original entity
+		// first, estabilish the original entity. (obviously, you would create 
+		// the patch after estiabilishing original in practice)
 		Entity original = Entity
 			.newBuilder()
 			.setId("ABC")
@@ -83,6 +84,8 @@ public class App {
 			System.out.println(JsonFormat.printer().print(original));
 			System.out.println("> Modified Entity Object");
 			System.out.println(JsonFormat.printer().print(modified));
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			System.err.println("Something went wrong :(");
+		}
 	}
 }
