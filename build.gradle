@@ -7,10 +7,21 @@ repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.0'
 	compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.6.0'
 }
 
-mainClassName = 'me.kunzhou.protobuf_min.App'
+startScripts.enabled = false
+
+task fieldMaskDemo(type: CreateStartScripts) {
+  mainClassName = 'me.kunzhou.protobuf_examples.FieldMaskDemo'
+  applicationName = 'fieldmask-demo'
+  outputDir = new File(project.buildDir, 'tmp')
+  classpath = jar.outputs.files + project.configurations.runtime
+}
+
+applicationDistribution.into('bin') {
+  from(fieldMaskDemo)
+  fileMode = 0755
+}

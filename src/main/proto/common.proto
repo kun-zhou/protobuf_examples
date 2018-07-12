@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package common;
-option java_package = "me.kunzhou.protobuf_min";
+option java_package = "me.kunzhou.protobuf_examples";
 option java_outer_classname = "common";
 option java_multiple_files = true;
 

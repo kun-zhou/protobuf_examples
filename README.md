@@ -1,6 +1,14 @@
-This sample Java app demos the use of FieldMask to update existing protobuf
-messages.
+This repository contains a collection of Java programs demonstrating the use of
+some of the more obscure features of Protocol Buffer 3.
+
+## structure
 
 Proto definitions can be found in `src/main/proto`.
 
-To compile & run, execute `gradle run` from project root.
+## how to use
+
+To compile, execute `gradle installDist` from project root.
+
+The following demos are available:
+
+- FieldMaskDemo: run `build/install/protobuf_examples/bin/fieldmask-demo` to execute
