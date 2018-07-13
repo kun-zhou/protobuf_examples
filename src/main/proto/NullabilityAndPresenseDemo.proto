@@ -10,9 +10,19 @@ import "google/protobuf/wrappers.proto";
 
 //----------------------------------------------------------------------
 // WAY 1
+message Owner {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue resource = 2;
+}
+
+message Others {
+    Owner owner = 1;
+    google.protobuf.Int32Value update_time = 2;
+}
+
 message Entity {
     google.protobuf.StringValue id = 1;
-    string others = 2;
+    Others others = 2;
 }
 
 message PatchRequest {
@@ -24,14 +34,31 @@ message PatchRequest {
 // WAY 2
 message NullableString {
     oneof String {
-    	string stringValue = 1;
-    	google.protobuf.NullValue nullValue = 2;
+    	string value = 1;
+    	//google.protobuf.NullValue nullValue = 2;
     }
 }
 
+message NullableInt32 {
+    oneof String {
+        string stringValue = 1;
+    }
+}
+
+message OwnerT {
+    NullableString id = 1;
+    NullableString resource = 2;
+}
+
+message OthersT {
+    OwnerT owner = 1;
+    NullableInt32 update_time = 2;
+}
+
+
 message EntityT {
     NullableString id = 1;
-    string others = 2;
+    OthersT others = 2;
 }
 
 message PatchRequestT {
