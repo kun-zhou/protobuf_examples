@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package nullability_and_presense;
+option java_package = "me.kunzhou.protobuf_examples.nullability_and_presense_demo";
+option java_multiple_files = true;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/wrappers.proto";
+
+//----------------------------------------------------------------------
+// WAY 1
+message Entity {
+    google.protobuf.StringValue id = 1;
+    string others = 2;
+}
+
+message PatchRequest {
+	Entity entity = 1;
+	google.protobuf.FieldMask mask = 2;
+}
+
+//----------------------------------------------------------------------
+// WAY 2
+message NullableString {
+    oneof String {
+    	string stringValue = 1;
+    	google.protobuf.NullValue nullValue = 2;
+    }
+}
+
+message EntityT {
+    NullableString id = 1;
+    string others = 2;
+}
+
+message PatchRequestT {
+	EntityT entity = 1;
+}
+
+//----------------------------------------------------------------------
+// WAY 3
+
+/*
+message NullableString {
+    string value = 1;
+}
+
+message ExistentialNullableString {
+    NullableString nullableString = 1;
+}
+
+message EntityTT {
+    ExistentialNullableString id = 1;
+    string others = 2;
+}
+
+message PatchRequestTT {
+	EntityTT entity = 1;
+}
+*/
+// Request.newBuilder().setId(...).build()
+// request.hasId() -> true
+
+// Request.newBuilder().build()
+// request.hasId() -> false
+
+// request.getId().getStringCase()
+
+// fieldmask = { "mask": "id.stringValue" }
+// fieldmask = { "mask": "id.nullValue" }
+
+// 1. fieldmask and wrapper
+// 2. wrapper and oneof UGLY
+// 3. wrapper and wrapper UGLY

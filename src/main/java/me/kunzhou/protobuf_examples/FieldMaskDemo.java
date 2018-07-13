@@ -5,8 +5,6 @@ import com.google.protobuf.util.FieldMaskUtil;
 import com.google.protobuf.FieldMask;
 
 import me.kunzhou.protobuf_examples.field_mask_messages.*;
-
-// protobuf objects namespaced in the same package
 // *.proto can be found in {project_root}/src/main/proto/
 
 public class FieldMaskDemo {
@@ -78,6 +76,7 @@ public class FieldMaskDemo {
             request.getEntity(), 
             modifiedEntityBuilder
         );
+        
         Entity modified = modifiedEntityBuilder.build();
 
         try {
@@ -90,5 +89,6 @@ public class FieldMaskDemo {
         } catch (Exception e) {
             System.err.println("Something went wrong :(");
         }
+
     }
 }

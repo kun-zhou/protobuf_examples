@@ -2,17 +2,17 @@ package me.kunzhou.protobuf_examples;
 
 import me.kunzhou.protobuf_examples.oneof_messages.*;
 import com.google.protobuf.NullValue;
-// protobuf objects namespaced in the same package
 // *.proto can be found in {project_root}/src/main/proto/
 
 public class OneofDemo {
 
-    public static void main(String[] args) {
+    // use oneof to implement nullability
 
-        //*** 1. playaround with a NullableString ***//
+    public static void main(String[] args) {
+        //*** 1. play around with a NullableString ***//
          System.out.println(">>> 1. playaround with a NullableString");
         NullableString nullableString = NullableString.newBuilder().setStringValue("Heys").build();
-
+        
         if (nullableString.getStringCase() != NullableString.StringCase.STRING_NOT_SET) {
             System.out.println("Field set!!");
         } else {
@@ -25,7 +25,7 @@ public class OneofDemo {
             System.out.println("We have Null value!!!");
         }
         
-        //*** 2. usage with the toString method
+        //*** 2. usage with the toString and fromString method
         System.out.println(">>> 2. usage with the fromString and toString method");
         System.out.println(toString(nullableString));
         System.out.println(toString(fromString("Hello World")));
@@ -40,7 +40,6 @@ public class OneofDemo {
     }
 
     public static String toString(NullableString nullableString) {
-
         NullableString.StringCase strinCase = nullableString.getStringCase();
         if (strinCase == NullableString.StringCase.STRINGVALUE) {
             return nullableString.getStringValue();
