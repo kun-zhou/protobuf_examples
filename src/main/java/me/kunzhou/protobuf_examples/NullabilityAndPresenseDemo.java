@@ -57,45 +57,52 @@ public class NullabilityAndPresenseDemo {
         FieldMaskUtil.MergeOptions mergeOptions = new FieldMaskUtil.MergeOptions();
         mergeOptions.setReplaceMessageFields(true); 
 
+        String field_to_update = "others.owner.id";
+        String field_to_set_present = "others.owner.id";
+        String field_to_check = "others.owner.id";
+        String field_to_set_null = "others.owner.id";
       //****************************************************************//
      //*** 1. Use fieldmask for presence and wrapper for nullability **//
     //****************************************************************//
+
+    final PatchRequest patchRequest;
+
+    { // CLIENT SIDE
         System.out.println("1. Use fieldmask for presence and wrapper for nullability");
 
-        String field_to_update = "others.owner.id";
-        String fieldToSetAsPresent = field_to_update;
-         System.out.println("Creating a patch that update "+field_to_update+" to null");
+        System.out.println("Creating a patch that update "+field_to_update+" to null");
         // 1.1 CLIENT side setting a field as not present
             //just don't include in field mask
         // 1.2 CLIENT side setting a field as present
             // just include in fieldmask
-        FieldMask fieldMask = FieldMask
+        final FieldMask fieldMask = FieldMask
             .newBuilder()
-            .addPaths(fieldToSetAsPresent)  // set "others.owner.id" as present
+            .addPaths(field_to_set_present)  // set "others.owner.id" as present
             .build();
 
         // 1.3 CLIENT side setting a field as NULL
-        String fieldToSetAsNull = fieldToSetAsPresent;
-        Entity patch = Entity.newBuilder()
+        final Entity patch = Entity.newBuilder()
             .setOthers(
                 Others
                     .newBuilder()
                     .setOwner(
                         Owner.newBuilder().build()
-                        // DO NOT .setId(), which is fieldToSetAsNull
+                        // DO NOT .setId(), which is field_to_set_null
                     )
                     .build()
             )
             .build();
 
-        PatchRequest patchRequest = PatchRequest
+        patchRequest = PatchRequest
             .newBuilder()
             .setEntity(patch)
             .setMask(fieldMask)
             .build();
+    }
         //-------------------------------------------------------------
-        patch = patchRequest.getEntity();
-        String field_to_check = field_to_update;
+    { // SERVER SIDE  
+        final Entity patch = patchRequest.getEntity();
+        final FieldMask fieldMask = patchRequest.getMask();
         // 1.4 SERVER side checking a field is present
         // 1.5 SERVER side check field as null
         // 1.6 SERVER side get non-null
@@ -109,28 +116,30 @@ public class NullabilityAndPresenseDemo {
         }
 
         // 1.7 SERVER side MERGING
-        Entity.Builder modifiedBuilder = entity.toBuilder(); 
+        final Entity.Builder modifiedBuilder = entity.toBuilder(); 
         FieldMaskUtil.merge(
             patchRequest.getMask(),
             patchRequest.getEntity(),
             modifiedBuilder,
             mergeOptions
         );
-        Entity modified = modifiedBuilder.build();
+        final Entity modified = modifiedBuilder.build();
         System.out.print("Patch applied, then is " + field_to_check + " null in the patched entity?   ");
         System.out.println(!patch.getOthers().getOwner().hasId());
+    }
 
-
-    //****************************************************************//
-     //*** 2. Use wrapper for presence and oneof for nullability **//
-    //****************************************************************//
+      //*************************************************************//
+     //*** 2. Use wrapper for presence and oneof for nullability ***//
+    //*************************************************************//
+    final EntityT patchT; // EntityT is enough here as a patch because field mask is no longer needed 
+    { // CLIENT SIDE
         System.out.println("2. Use wrapper for presence and oneof for nullability");
         System.out.println("Creating a patch to set `id` to null and `others.owner.id` to 'CHANGED'");
         // 2.1 CLIENT side setting a field as not present
             // just don't set it
         // 2.2 CLIENT side setting a field as present
         // 2.3 CLIENT side setting a field as present and NULL
-        EntityT patchT = EntityT
+        patchT = EntityT
             .newBuilder()
             .setId(NullableString.newBuilder().setValue("CHANGED").build()) // set non null & present
             .setOthers(
@@ -146,7 +155,9 @@ public class NullabilityAndPresenseDemo {
                     .build()
             )
             .build();
+    }
         //-------------------------------------------------------------
+    { // SERVER SIDE
         // 2.4 SERVER side checking a field is present
         // 2.5 Server side check field as null
         // 2.6 SERVER side get non-null
@@ -163,5 +174,17 @@ public class NullabilityAndPresenseDemo {
 
         // 2.7 SERVER side merging patch
         // NEED TO LOOP THRU NESTED LOOPS, **UGLY**
+    }
+      //*******************************//
+     //*** 3. Other random tests***//
+    //*******************************//
+        // String entityJsonString = "{\"id\":null, \"others\": { \"owner\": \"fine\"}}";
+        // Entity.Builder b = Entity.newBuilder();
+        // try {JsonFormat.parser().merge(entityJsonString, b);}catch(Exception e){}
+        // System.out.println(entityJsonString);
+        // System.out.print("protobuf has id as ");
+        // System.out.println(
+        //     b.build().hasId() ? "not null" : "null"
+        // );
     }
 }
