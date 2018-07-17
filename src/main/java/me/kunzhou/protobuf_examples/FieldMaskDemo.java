@@ -89,6 +89,16 @@ public class FieldMaskDemo {
         } catch (Exception e) {
             System.err.println("Something went wrong :(");
         }
-
+        // OTHER RANDOM STUFF
+        Entity.Builder e = Entity.newBuilder()
+            .setDetail(Detail.getDefaultInstance())
+            .setId("123");
+        System.out.println(e.hasDetail());
+        //e.clear();
+        e.clearField(
+            e.getDescriptor().findFieldByName("detail")
+        );
+        e.clearDetail();
+        System.out.println(e.hasDetail());
     }
 }

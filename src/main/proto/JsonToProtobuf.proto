@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package json_to_protobuf;
+option java_package = "me.kunzhou.protobuf_examples.json_to_protobuf";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+
+
+message Secret {
+	google.protobuf.StringValue username = 1;
+	Detail detail = 3;
+}
+
+message Detail {
+	google.protobuf.StringValue website = 1;
+}
