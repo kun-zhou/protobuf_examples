@@ -12,6 +12,7 @@ dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.6.0'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.6'
+    compile group: 'com.hubspot.jackson', name: 'jackson-datatype-protobuf', version: '0.9.9-jackson2.9-proto3'
 }
 
 startScripts.enabled = false
@@ -45,10 +46,18 @@ task jsonToProtobuf(type: CreateStartScripts) {
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
+task jacksonJsonToProtobuf(type: CreateStartScripts) {
+    mainClassName = 'me.kunzhou.protobuf_examples.jackson_json_to_protobuf.App'
+    applicationName = 'jackson-json-to-protobuf'
+    outputDir = new File(project.buildDir, 'tmp')
+    classpath = jar.outputs.files + project.configurations.runtime
+}
+
 applicationDistribution.into('bin') {
     from(fieldMask)
     from(oneof)
     from(nullabilityAndPresense)
     from(jsonToProtobuf)
+    from(jacksonJsonToProtobuf)
     fileMode = 0755
 }

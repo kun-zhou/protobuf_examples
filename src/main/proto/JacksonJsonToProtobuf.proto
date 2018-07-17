@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package jackson_json_to_protobuf;
+option java_package = "me.kunzhou.protobuf_examples.jackson_json_to_protobuf";
+option java_outer_classname = "proto";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+
+message Detail {
+	google.protobuf.StringValue website = 1;
+	google.protobuf.DoubleValue num = 2;
+}

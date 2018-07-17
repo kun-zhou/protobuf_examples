@@ -1,7 +1,5 @@
 package me.kunzhou.protobuf_examples.field_mask;
 
-//import me.kunzhou.protobuf_examples.field_mask.messages.*;
-
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.util.FieldMaskUtil;
 import com.google.protobuf.FieldMask;

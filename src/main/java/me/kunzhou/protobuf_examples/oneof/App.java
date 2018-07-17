@@ -1,7 +1,5 @@
 package me.kunzhou.protobuf_examples.oneof;
 
-// import me.kunzhou.protobuf_examples.oneof.messages.*;
-
 import com.google.protobuf.NullValue;
 
 

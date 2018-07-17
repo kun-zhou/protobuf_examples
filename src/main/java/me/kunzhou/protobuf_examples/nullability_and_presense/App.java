@@ -1,7 +1,5 @@
 package me.kunzhou.protobuf_examples.nullability_and_presense;
 
-// import me.kunzhou.protobuf_examples.nullability_and_presense.messages.*;
-
 import java.util.Map;
 
 import com.google.protobuf.NullValue;

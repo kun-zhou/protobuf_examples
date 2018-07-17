@@ -1,7 +1,5 @@
 package me.kunzhou.protobuf_examples.json_to_protobuf;
 
-// import me.kunzhou.protobuf_examples.json_to_protobuf.messages.*;
-
 import com.google.protobuf.StringValue;
 
 import java.util.Map;
@@ -18,12 +16,13 @@ import com.fasterxml.jackson.annotation.JsonGetter;
  * find its way into your business logic, helper classes are needed.
  *
  * This example present helper wrappers around the genereated code to allow 
- * Java Beans style of accessing protobuf messages. It also showcases how validation 
- * could be done, and how we can leverage the wrappers to map JSON to protobuf
- * protobuf message back and forth with ObjectMapper
+ * Java Beans style of accessing protobuf messages. It also showcases how  
+ * validation could be done, and how we can leverage the wrappers to map 
+ * JSON to protobuf protobuf message back and forth with ObjectMapper.
  * 
  * Ideally, these helper classes will be generated from the
  * protobuf definitions.
+ *
  */
 
 public class App {
@@ -45,6 +44,16 @@ public class App {
     	secret.getDetail().setWebsite(null);
     	System.out.println(secret.toProto().getDetail().hasWebsite());
 
+
+        //---------
+
+        
+
+
+        // System.out.println("---");
+        // System.out.println(secret_hubspot);
+        // System.out.println("---");
+        //------
         // test mapping to JSON again
         System.out.println(
             mapper.writeValueAsString(secret)
@@ -58,7 +67,10 @@ class SecretProxy {
     	private Secret.Builder builder;
 
     	@JsonCreator
-    	SecretProxy(@JsonProperty("username") String username, @JsonProperty("detail") DetailProxy detail) {
+    	SecretProxy(
+            @JsonProperty("username") String username, 
+            @JsonProperty("detail") DetailProxy detail
+        ) {
     		builder = Secret.newBuilder();
     		setUsername(username);
     		setDetail(detail);
@@ -92,6 +104,7 @@ class SecretProxy {
     			builder.setDetail(detail._getBuilder());
     		}
     	}
+        
         @JsonGetter
     	DetailProxy getDetail() {
     		// always use getMessageTypeBuilder when getMessageType
@@ -127,7 +140,7 @@ class DetailProxy {
     	private Detail.Builder builder;
 
     	@JsonCreator
-    	DetailProxy(@JsonProperty("website")String url) {
+    	DetailProxy(@JsonProperty("website") String url) {
     		builder = Detail.newBuilder();
     		setWebsite(url);
     	}
