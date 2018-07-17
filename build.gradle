@@ -16,39 +16,39 @@ dependencies {
 
 startScripts.enabled = false
 
-task fieldMaskDemo(type: CreateStartScripts) {
-    mainClassName = 'me.kunzhou.protobuf_examples.FieldMaskDemo'
-    applicationName = 'fieldmask-demo'
+task fieldMask(type: CreateStartScripts) {
+    mainClassName = 'me.kunzhou.protobuf_examples.field_mask.App'
+    applicationName = 'fieldmask'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
-task oneofDemo(type: CreateStartScripts) {
-    mainClassName = 'me.kunzhou.protobuf_examples.OneofDemo'
-    applicationName = 'oneof-demo'
+task oneof(type: CreateStartScripts) {
+    mainClassName = 'me.kunzhou.protobuf_examples.oneof.App'
+    applicationName = 'oneof'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
-task nullabilityAndPresenseDemo(type: CreateStartScripts) {
-    mainClassName = 'me.kunzhou.protobuf_examples.NullabilityAndPresenseDemo'
-    applicationName = 'nullability-and-presense-demo'
+task nullabilityAndPresense(type: CreateStartScripts) {
+    mainClassName = 'me.kunzhou.protobuf_examples.nullability_and_presense.App'
+    applicationName = 'nullability-and-presense'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
 
 task jsonToProtobuf(type: CreateStartScripts) {
-    mainClassName = 'me.kunzhou.protobuf_examples.JsonToProtobuf'
+    mainClassName = 'me.kunzhou.protobuf_examples.json_to_protobuf.App'
     applicationName = 'json-to-protobuf'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
 applicationDistribution.into('bin') {
-    from(fieldMaskDemo)
-    from(oneofDemo)
-    from(nullabilityAndPresenseDemo)
+    from(fieldMask)
+    from(oneof)
+    from(nullabilityAndPresense)
     from(jsonToProtobuf)
     fileMode = 0755
 }

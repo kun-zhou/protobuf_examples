@@ -11,7 +11,7 @@ To compile, execute `gradle installDist` from project root.
 
 The following demos are available:
 
-- FieldMaskDemo: run `build/install/protobuf_examples/bin/fieldmask-demo` to execute
-- OneofDemo: run `build/install/protobuf_examples/bin/oneof-demo` to execute
-- NullabilityAndPresenseDemo: run `build/install/protobuf_examples/bin/nullability-and-presense-demo` to execute
+- FieldMaskDemo: run `build/install/protobuf_examples/bin/fieldmask` to execute
+- OneofDemo: run `build/install/protobuf_examples/bin/oneof` to execute
+- NullabilityAndPresenseDemo: run `build/install/protobuf_examples/bin/nullability-and-presense` to execute
 - JsonToProtobuf: run `build/install/protobuf_examples/bin/json-to-protobuf` to execute

@@ -1,10 +1,11 @@
-package me.kunzhou.protobuf_examples;
+package me.kunzhou.protobuf_examples.oneof;
 
-import me.kunzhou.protobuf_examples.oneof_messages.*;
+// import me.kunzhou.protobuf_examples.oneof.messages.*;
+
 import com.google.protobuf.NullValue;
-// *.proto can be found in {project_root}/src/main/proto/
 
-public class OneofDemo {
+
+public class App {
 
     // use oneof to implement nullability
 

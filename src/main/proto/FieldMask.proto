@@ -1,10 +1,12 @@
 syntax = "proto3";
 
 package field_mask;
-option java_package = "me.kunzhou.protobuf_examples.field_mask_messages";
+option java_package = "me.kunzhou.protobuf_examples.field_mask";
+option java_outer_classname = "proto";
 option java_multiple_files = true;
 
 import "google/protobuf/field_mask.proto";
+
 
 message Detail {
     int32 age = 1;

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package json_to_protobuf;
 option java_package = "me.kunzhou.protobuf_examples.json_to_protobuf";
+option java_outer_classname = "proto";
 option java_multiple_files = true;
 
 import "google/protobuf/wrappers.proto";

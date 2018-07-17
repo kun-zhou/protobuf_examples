@@ -1,13 +1,13 @@
-package me.kunzhou.protobuf_examples;
+package me.kunzhou.protobuf_examples.field_mask;
+
+//import me.kunzhou.protobuf_examples.field_mask.messages.*;
 
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.util.FieldMaskUtil;
 import com.google.protobuf.FieldMask;
 
-import me.kunzhou.protobuf_examples.field_mask_messages.*;
-// *.proto can be found in {project_root}/src/main/proto/
 
-public class FieldMaskDemo {
+public class App {
 
     /* 
      ** SOME USEFUL LINKS **

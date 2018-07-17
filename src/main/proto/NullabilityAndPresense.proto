@@ -1,7 +1,8 @@
 syntax = "proto3";
 
 package nullability_and_presense;
-option java_package = "me.kunzhou.protobuf_examples.nullability_and_presense_demo";
+option java_package = "me.kunzhou.protobuf_examples.nullability_and_presense";
+option java_outer_classname = "proto";
 option java_multiple_files = true;
 
 import "google/protobuf/struct.proto";

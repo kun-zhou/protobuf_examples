@@ -1,6 +1,6 @@
-package me.kunzhou.protobuf_examples;
+package me.kunzhou.protobuf_examples.json_to_protobuf;
 
-import me.kunzhou.protobuf_examples.json_to_protobuf.*;
+// import me.kunzhou.protobuf_examples.json_to_protobuf.messages.*;
 
 import com.google.protobuf.StringValue;
 
@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonGetter;
-
 
 
 /* ** README **
@@ -27,14 +26,14 @@ import com.fasterxml.jackson.annotation.JsonGetter;
  * protobuf definitions.
  */
 
-public class JsonToProtobuf {
+public class App {
 
     public static void main(String[] args) throws Exception {
 
     	ObjectMapper mapper = new ObjectMapper();
 
     	SecretProxy secret = mapper.readValue(
-    		JsonToProtobuf.class.getResourceAsStream("/secret.json"), 
+    		App.class.getResourceAsStream("/secret.json"), 
             SecretProxy.class
     	);
 

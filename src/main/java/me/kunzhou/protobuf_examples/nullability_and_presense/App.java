@@ -1,6 +1,8 @@
-package me.kunzhou.protobuf_examples;
+package me.kunzhou.protobuf_examples.nullability_and_presense;
 
-import me.kunzhou.protobuf_examples.nullability_and_presense_demo.*;
+// import me.kunzhou.protobuf_examples.nullability_and_presense.messages.*;
+
+import java.util.Map;
 
 import com.google.protobuf.NullValue;
 import com.google.protobuf.StringValue;
@@ -10,16 +12,15 @@ import com.google.protobuf.Descriptors;
 import com.google.protobuf.util.FieldMaskUtil;
 import com.google.protobuf.util.JsonFormat;
 
-import java.util.Map;
 
-public class NullabilityAndPresenseDemo {
+public class App {
 
     // an example of a REST PATCH request but in protobuf
     // the field `entity.others.owner.id` is updated to null
 
-    //****************************************************************//
-     //*** 0. Preliminaries **//
-    //****************************************************************//
+      //************************//
+     //*** 0. Preliminaries ***//
+    //************************//
     public static void main(String[] args) {
         final String entityId = "b116768c-dac0-4ef1-8024-7d3056c6b186";
         final String ownerId = "7d304ef1-8c-dac002b1167684-56c6b1a1sx";
