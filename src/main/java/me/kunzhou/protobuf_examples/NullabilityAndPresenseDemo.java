@@ -21,9 +21,9 @@ public class NullabilityAndPresenseDemo {
      //*** 0. Preliminaries **//
     //****************************************************************//
     public static void main(String[] args) {
-        String entityId = "b116768c-dac0-4ef1-8024-7d3056c6b186";
-        String ownerId = "7d304ef1-8c-dac002b1167684-56c6b1a1sx";
-        Entity entity = Entity
+        final String entityId = "b116768c-dac0-4ef1-8024-7d3056c6b186";
+        final String ownerId = "7d304ef1-8c-dac002b1167684-56c6b1a1sx";
+        final Entity entity = Entity
             .newBuilder()
             .setId(StringValue.newBuilder().setValue(entityId).build())
             .setOthers(
@@ -39,7 +39,7 @@ public class NullabilityAndPresenseDemo {
             )
             .build();
 
-        EntityT entityT = EntityT
+        final EntityT entityT = EntityT
             .newBuilder()
             .setId(NullableString.newBuilder().setValue(entityId).build())
             .setOthers(
@@ -54,13 +54,13 @@ public class NullabilityAndPresenseDemo {
                     .build()
             )
             .build();
-        FieldMaskUtil.MergeOptions mergeOptions = new FieldMaskUtil.MergeOptions();
+        final FieldMaskUtil.MergeOptions mergeOptions = new FieldMaskUtil.MergeOptions();
         mergeOptions.setReplaceMessageFields(true); 
 
-        String field_to_update = "others.owner.id";
-        String field_to_set_present = "others.owner.id";
-        String field_to_check = "others.owner.id";
-        String field_to_set_null = "others.owner.id";
+        final String field_to_update = "others.owner.id";
+        final String field_to_set_present = "others.owner.id";
+        final String field_to_check = "others.owner.id";
+        final String field_to_set_null = "others.owner.id";
       //****************************************************************//
      //*** 1. Use fieldmask for presence and wrapper for nullability **//
     //****************************************************************//
