@@ -42,9 +42,16 @@ public class App {
 
     	// test whether setting nested field to bull works
     	secret.getDetail().setWebsite(null);
-    	System.out.println(secret.toProto().getDetail().hasWebsite());
+    	System.out.println(secret._build().getDetail().hasWebsite());
 
-
+        // test whether mutating the child builder after it has been added
+        //  mutates the parent builder
+        DetailProxy detailProxy = new DetailProxy("www.163.com");
+        secret.setDetail(
+            detailProxy
+        );
+        detailProxy.setWebsite("www.google.com");
+        System.out.println(secret._build().getDetail().getWebsite());
         //---------
 
         
@@ -64,7 +71,8 @@ public class App {
 // Below classes should be generated
 class SecretProxy {
 
-    	private Secret.Builder builder;
+    	private final Secret.Builder builder;
+        private DetailProxy detail;
 
     	@JsonCreator
     	SecretProxy(
@@ -98,18 +106,14 @@ class SecretProxy {
     	}
 
     	void setDetail(DetailProxy detail) {
-    		if (detail == null) {
-    			builder.clearDetail();
-    		} else {
-    			builder.setDetail(detail._getBuilder());
-    		}
+    		this.detail = detail;
     	}
         
         @JsonGetter
     	DetailProxy getDetail() {
     		// always use getMessageTypeBuilder when getMessageType
     		// so the source of truth is the builder's sub-builder
-			return builder.hasDetail() ? new DetailProxy(builder.getDetailBuilder()) : null;
+			return detail;
     	}
 
     	// Validation Generated Code
@@ -127,11 +131,11 @@ class SecretProxy {
 
     	// Others
     	Secret.Builder _getBuilder() {
-    		return builder;
+    		return builder.setDetail(detail._build());
     	}
 
-    	Secret toProto() {
-    		return builder.build();
+    	Secret _build() {
+    		return _getBuilder().build();
     	}
     }
 
@@ -170,7 +174,7 @@ class DetailProxy {
     		return builder;
     	}
 
-    	Detail toProto() {
+    	Detail _build() {
     		return builder.build();
     	}
     }
